@@ -17,9 +17,25 @@ function getExtractedModuleDir($sourceModuleDir, $suffix)
             $uiModulePath . '/composer.json',
             preg_replace('/name": "([^\"]*)"/', 'name": "$1-' . from_camel_case($suffix) . '"', file_get_contents($uiModulePath . '/composer.json'))
         );
+        copy($sourceModuleDir . '/registration.php', $uiModulePath . '/registration.php');
+        file_put_contents(
+            $uiModulePath . '/registration.php',
+            preg_replace('/' . basename($sourceModuleDir) . '/', $uiModuleName, file_get_contents($uiModulePath . '/registration.php'))
+        );
+        copy($sourceModuleDir . '/etc/module.xml', $uiModulePath . '/etc/module.xml');
+        file_put_contents(
+            $uiModulePath . '/etc/module.xml',
+            preg_replace('/' . basename($sourceModuleDir) . '/', $uiModuleName, file_get_contents($uiModulePath . '/etc/module.xml'))
+        );
         copy($sourceModuleDir . '/LICENSE.txt', $uiModulePath . '/LICENSE.txt');
         copy($sourceModuleDir . '/LICENSE_AFL.txt', $uiModulePath . '/LICENSE_AFL.txt');
     }
+
+    $rootComposerJson = file_get_contents($sourceModuleDir . '/../../../../composer.json');
+    $rootComposerData = json_decode($rootComposerJson, true);
+    $rootComposerData['replace']['magento/' . from_camel_case($uiModuleName)] = '*';
+    file_put_contents($sourceModuleDir . '/../../../../composer.json', json_encode($rootComposerData, JSON_PRETTY_PRINT));
+
     return $uiModulePath;
 }
 
@@ -57,6 +73,6 @@ function extractModule($directory, $suffix, $extractedFiles, $ignoreModules)
     }
 }
 
-//extractModule($directory, 'AdminUi', ['Block/Adminhtml', 'Controller/Adminhtml', 'view/adminhtml', 'etc/adminhtml'], ['/.*AdminUi$/', '/.*Ui$/']);
-//extractModule($directory, 'Ui', ['Block', 'Controller', 'view', 'ViewModel', 'Ui', 'etc/frontend'], ['/.*AdminUi$/', '/.*Ui$/']);
+extractModule($directory, 'AdminUi', ['Block/Adminhtml', 'Controller/Adminhtml', 'view/adminhtml', 'etc/adminhtml'], ['/.*AdminUi$/', '/.*Ui$/']);
+extractModule($directory, 'Ui', ['Block', 'Controller', 'view', 'ViewModel', 'Ui', 'etc/frontend'], ['/.*AdminUi$/', '/.*Ui$/']);
 extractModule($directory, 'Webapi', ['etc/webapi.xml', 'etc/webapi_rest', 'etc/webapi_soap'], ['/.*Webapi$/']);
