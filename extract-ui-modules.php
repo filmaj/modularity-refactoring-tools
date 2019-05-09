@@ -17,11 +17,18 @@ function getExtractedModuleDir($sourceModuleDir, $suffix)
             $uiModulePath . '/composer.json',
             preg_replace('/name": "([^\"]*)"/', 'name": "$1-' . from_camel_case($suffix) . '"', file_get_contents($uiModulePath . '/composer.json'))
         );
+
+        $composerJsonContent = file_get_contents($uiModulePath . '/composer.json');
+        $composerJsonData = json_decode($composerJsonContent, true);
+        $composerJsonData['require']['magento/module-' . from_camel_case(basename($sourceModuleDir))] = '*';
+        file_put_contents($uiModulePath . '/composer.json', json_encode($composerJsonData, JSON_PRETTY_PRINT));
+
         copy($sourceModuleDir . '/registration.php', $uiModulePath . '/registration.php');
         file_put_contents(
             $uiModulePath . '/registration.php',
             preg_replace('/' . basename($sourceModuleDir) . '/', $uiModuleName, file_get_contents($uiModulePath . '/registration.php'))
         );
+        mkdir($uiModulePath. '/etc');
         copy($sourceModuleDir . '/etc/module.xml', $uiModulePath . '/etc/module.xml');
         file_put_contents(
             $uiModulePath . '/etc/module.xml',
@@ -31,10 +38,10 @@ function getExtractedModuleDir($sourceModuleDir, $suffix)
         copy($sourceModuleDir . '/LICENSE_AFL.txt', $uiModulePath . '/LICENSE_AFL.txt');
     }
 
-    $rootComposerJson = file_get_contents($sourceModuleDir . '/../../../../composer.json');
-    $rootComposerData = json_decode($rootComposerJson, true);
-    $rootComposerData['replace']['magento/' . from_camel_case($uiModuleName)] = '*';
-    file_put_contents($sourceModuleDir . '/../../../../composer.json', json_encode($rootComposerData, JSON_PRETTY_PRINT));
+    $rootComposerJsonContent = file_get_contents($sourceModuleDir . '/../../../../composer.json');
+    $rootComposerJsonData = json_decode($rootComposerJsonContent, true);
+    $rootComposerJsonData['replace']['magento/module-' . from_camel_case($uiModuleName)] = '*';
+    file_put_contents($sourceModuleDir . '/../../../../composer.json', json_encode($rootComposerJsonData, JSON_PRETTY_PRINT));
 
     return $uiModulePath;
 }
