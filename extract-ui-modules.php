@@ -52,7 +52,7 @@ function from_camel_case($input) {
     foreach ($ret as &$match) {
         $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
     }
-    return implode('-', $ret);
+    return preg_replace('/(\d+)/', '-$1', implode('-', $ret));
 }
 
 function extractModule($directory, $suffix, $extractedFiles, $ignoreModules)
