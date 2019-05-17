@@ -89,7 +89,7 @@ $pathTypeConfig = [
     ]
 ];
 
-$allowedInstances = ['admin', 'ui', 'webapi'];
+$allowedInstances = ['admin-ui', 'ui', 'webapi'];
 
 $composerJsonPath = __DIR__ . DIRECTORY_SEPARATOR . $argv[1];
 
