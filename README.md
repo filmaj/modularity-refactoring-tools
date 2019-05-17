@@ -17,7 +17,7 @@ Allows to remove packages that are not need on UI instance from `composer.json` 
 Should be able to install packages, Magento and login to admin.
 
 1. Clone https://github.com/magento-architects/magento2ce/tree/distributed-deployment magento2ce
-2. `cp -r magento2ce magento2ce/` - this is needed to use composer path type repo
+2. `cp -r magento2ce magento2ce-repo/` - this is needed to use composer path type repo
 3. `php extract-ui-modules.php magento2ce/magento2ce/app/code/Magento`
 4. `rm -rf magento2ce/app/code/Magento/*`
 5. `rm -rf magento2ce/lib/internal/Magento/*`
