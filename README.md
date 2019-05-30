@@ -21,6 +21,6 @@ Should be able to install packages, Magento and login to admin.
 3. `php extract-ui-modules.php magento2ce/magento2ce/app/code/Magento`
 4. `rm -rf magento2ce/app/code/Magento/*`
 5. `rm -rf magento2ce/lib/internal/Magento/*`
-6. `php prepare-composer-json.php magento2ce/composer.json admin`
+6. `php prepare-composer-json.php magento2ce/composer.json admin-ui`
 7. `cd magento2ce`
 8. `composer install`
