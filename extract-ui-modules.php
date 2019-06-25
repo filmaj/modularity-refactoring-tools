@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 $directory = __DIR__ . DIRECTORY_SEPARATOR . $argv[1];
 
 function getExtractedModuleDir($sourceModuleDir, $suffix)
