@@ -62,6 +62,7 @@ $additionalPackages = [
         'magento/module-release-notification-ui' => '*',
         'magento/module-analytics-ui' => '*',
         'magento/module-asynchronous-operations-ui' => '*',
+        "magento/module-config-ui" => "*"
     ],
     'ui' => [
         'magento/module-webapi-async' => '*',
@@ -99,6 +100,49 @@ $additionalPackages = [
         'magento/module-reports-webapi' => '*',
         'magento/module-store-webapi' => '*',
         'magento/module-sales-rule-webapi' => '*',
+        "magento/module-message-queue" => "*",
+        "magento/framework-message-queue" => "*",
+        "magento/module-config-ui" => "*"
+    ],
+    'graph-ql' => [
+        'magento/module-webapi-async' => '*',
+        'magento/module-webapi-async-ui' => '*',
+        'magento/module-webapi-async-webapi' => '*',
+        'magento/module-webapi-admin-ui' => '*',
+        'magento/module-webapi' => '*',
+        'magento/module-webapi-ui' => '*',
+        'magento/module-eav-webapi' => '*',
+        'magento/module-catalog-url-rewrite-webapi' => '*',
+        'magento/module-sales-webapi' => '*',
+        'magento/module-persistent-webapi' => '*',
+        'magento/module-quote-webapi' => '*',
+        'magento/module-msrp-webapi' => '*',
+        'magento/module-checkout-agreements-webapi' => '*',
+        'magento/module-integration-webapi' => '*',
+        'magento/module-catalog-search-webapi' => '*',
+        'magento/module-catalog-webapi' => '*',
+        'magento/module-tax-webapi' => '*',
+        'magento/module-bundle-webapi' => '*',
+        'magento/module-user-webapi' => '*',
+        'magento/module-backend-webapi' => '*',
+        'magento/module-downloadable-webapi' => '*',
+        'magento/module-directory-webapi' => '*',
+        'magento/module-checkout-webapi' => '*',
+        'magento/module-search-webapi' => '*',
+        'magento/module-cms-webapi' => '*',
+        'magento/module-catalog-inventory-webapi' => '*',
+        'magento/module-gift-message-webapi' => '*',
+        'magento/module-asynchronous-operations-webapi' => '*',
+        'magento/module-catalog-rule-webapi' => '*',
+        'magento/module-configurable-product-webapi' => '*',
+        'magento/module-customer-webapi' => '*',
+        'magento/module-analytics-webapi' => '*',
+        'magento/module-reports-webapi' => '*',
+        'magento/module-store-webapi' => '*',
+        'magento/module-sales-rule-webapi' => '*',
+        "magento/module-message-queue" => "*",
+        "magento/framework-message-queue" => "*",
+        "magento/module-config-ui" => "*"
     ],
     'webapi' => [],
 ];
@@ -129,7 +173,7 @@ $pathTypeConfig = [
     ]
 ];
 
-$allowedInstances = ['admin-ui', 'ui', 'webapi'];
+$allowedInstances = ['admin-ui', 'ui', 'webapi', 'graph-ql'];
 
 $composerJsonPath = __DIR__ . DIRECTORY_SEPARATOR . $argv[1];
 
