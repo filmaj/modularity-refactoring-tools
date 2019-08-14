@@ -142,7 +142,8 @@ $additionalPackages = [
         'magento/module-sales-rule-webapi' => '*',
         "magento/module-message-queue" => "*",
         "magento/framework-message-queue" => "*",
-        "magento/module-config-ui" => "*"
+        "magento/module-config-ui" => "*",
+        "magento/module-store-ui" => "*",
     ],
     'webapi' => [],
 ];
