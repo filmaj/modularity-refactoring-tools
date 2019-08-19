@@ -144,6 +144,7 @@ $additionalPackages = [
         "magento/framework-message-queue" => "*",
         "magento/module-config-ui" => "*",
         "magento/module-store-ui" => "*",
+        "magento/module-graph-ql-ui" => "*",
     ],
     'webapi' => [],
 ];
